@@ -8,7 +8,7 @@
   </div>
 </template>
 
-<style>
+<style lang="scss">
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -26,7 +26,7 @@
 }
 
 #nav a.router-link-exact-active {
-  color: #42b983;
+  color: #41b879;
 }
 
 /*共通style*/
@@ -34,19 +34,37 @@
   display: inline-block;
   max-width: 180px;
   text-align: left;
-  border: 2px solid #9ec34b;
+  border: 2px solid #41b879;
   font-size: 16px;
-  color: #9ec34b;
+  color: #41b879;
   text-decoration: none;
   font-weight: bold;
   padding: 8px 16px;
   border-radius: 4px;
   transition: .4s;
+  background-color: white;
 }
-
-.btn-border:hover {
-  background-color: #9ec34b;
-  border-color: #cbe585;
-  color: #FFF;
+label {
+  display: inline-block;
+  color: #41b879;
+  font-weight: bold;
+  font-size: 16px;
+}
+select {
+  display: block;
+  color: #41b879;
+  border-color: #41b879;
+  border-width: 2px;
+  font-weight: bold;
+  font-size: 16px;
+  border-radius: 4px;
+  padding: 4px;
+  text-align: center;
+}
+input[type="number"] {
+  display: inline-block;
+  color: #41b879;
+  border: 2px solid #41b879;
+  font-size: 16px;
 }
 </style>
