@@ -4,14 +4,19 @@
             <img v-for="tile in hand" v-bind:key="tile" v-bind:src="tile_img['tile']">
         </div>
         <div id="buttonArea">
-            <button class="btn-border">萬子</button>
+            <button class="btn-border" v-on:click="select_tiles()">萬子</button>
             <button class="btn-border">索子</button>
             <button class="btn-border">筒子</button>
             <button class="btn-border">字牌</button>
             <div id="tiles">
             </div>
         </div>
-        <div>
+        <div id="tile_selector" v-show="tile_selector" v-on:click="unselect_tiles()">
+            <div>
+                <button>てすと</button>
+            </div>
+        </div>
+        <div id="situation_box">
             <select v-model="situation.round">
                 <option v-for="round in situation_conditions.round"
                         v-bind:value="round"
@@ -37,21 +42,21 @@
             </select>
             <label>本場</label>
         </div>
-        <div>
-            <label class="point_label">持ち点</label>
-            <input v-bind="points.self"/>
+        <div class="point_box">
+            <label>持ち点</label>
+            <input v-bind="points.self" type="number"/>
         </div>
-        <div>
-            <label class="point_label">下家</label>
-            <input v-bind="points.right"/>
+        <div class="point_box">
+            <label>下家</label>
+            <input v-bind="points.right" type="number"/>
         </div>
-        <div>
-            <label class="point_label">対面</label>
-            <input v-bind="points.opposite"/>
+        <div class="point_box">
+            <label>対面</label>
+            <input v-bind="points.opposite" type="number"/>
         </div>
-        <div>
-            <label class="point_label">上家</label>
-            <input v-bind="points.left"/>
+        <div class="point_box">
+            <label>上家</label>
+            <input v-bind="points.left" type="number"/>
         </div>
         <label>メモ</label>
         <textarea v-model="note"></textarea>
@@ -65,6 +70,7 @@ export default {
   data(){
       return {
           hand: [],
+          tile_selector: false,
           tile: {
 
           },
@@ -89,6 +95,14 @@ export default {
           },
           note: ""
       }
+  },
+  methods: {
+      select_tiles: function(){
+          this.tile_selector = true
+      },
+      unselect_tiles: function() {
+          this.tile_selector = false
+      }
   }
 }
 
@@ -102,17 +116,57 @@ export default {
     border: solid;
     border-width: 1px;
     border-color: yellowgreen;
+    border-color: #41b879;
+    border-width: 2px;
+    border-radius: 8px;
 }
 #buttonArea {
     margin-top: 10px;
 }
 .btn-border{
+    display: inline-block;
     margin: 3px;
+    align-items: center;
+    margin-top: 10px;
+    margin-bottom: 15px;
 }
 #tiles {
     z-index: 2;
 }
-.point_label{
+#tile_selector {
+    z-index: 2;
+    height: 40vh;
+    width: 85vw;
+    margin-left: 5%;
+    margin-right: 10%;
+    background-color: rgba( 20, 20, 20 );
+    border: 4px solid gray;
+    opacity: 0.20;
+    position: fixed;
+    display: block;
+}
+#situation_box {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.point_label {
     width: 0.5rem;
+}
+.point_box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 3px;
+}
+.point_box input{
+    margin: 5px;
+    width: 40%
+    
+}
+.point_box label{
+    display: block;
+    width: 20%;
+    text-align: center;
 }
 </style>
