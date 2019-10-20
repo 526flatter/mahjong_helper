@@ -2,9 +2,11 @@
     <div>
         <div id="hand">
             <div v-for="(pai, idx) in noDrawingPai" :key="idx">
-                <img :src="getTileSrc(pai)"/>
+                <img :src="getTileSrc(pai, 'hand')"/>
             </div>
-            <img :src="getTileSrc(drawingPai)" v-if="drawingPai"/>
+            <div>
+                <img :src="getTileSrc(drawingPai, 'hand')" v-if="drawingPai" id="justDrawing"/>
+            </div>
         </div>
         <div id="buttonArea">
             <button class="btn-border" @click="openTileSelector('m')">萬子</button>
@@ -14,7 +16,7 @@
         </div>
         <tile-selector v-if="showTileSelector" @close="closeTileSelector">
             <div v-for="(pai, idx) in tiles[tileType]" :key="idx">
-                <img :src="getTileSrc(pai)" class="paiSelector" @click="addPai(pai)"/>
+                <img :src="getTileSrc(pai, 'selector')" class="paiSelector" @click="addPai(pai)"/>
             </div>
         </tile-selector>
         <div id="situation_box">
@@ -103,27 +105,11 @@ export default {
       }
   },
   computed: {
-      tileSrc2: function(){
-          const srcTemplate = './img/pai-images/'
-          const tileSerial = ['1', '2', '3', '4', '5', '6', '7']
-          const ext = '.png'
-
-          let tileSrc = tileSerial.map(serial => srcTemplate + this.tileType + serial + ext)
-
-          if(this.tileType !== 't'){
-            //   tileSrc.splice(5, srcTemplate + this.tileType + '0' + ext) // 赤5
-              tileSrc.push(srcTemplate + this.tileType + '8' + ext) // 8と9 字牌は7種なので
-              tileSrc.push(srcTemplate + this.tileType + '9' + ext)
-              tileSrc.push(srcTemplate + this.tileType + '0' + ext) // 赤5
-          }
-          console.log(tileSrc)
-          return tileSrc
-      },
       noDrawingPai: function(){
           if (this.hand.length < 14){
               return this.hand
           } else {
-              return this.hand.slice(0, 13)
+              return this.hand.slice(0, 12)
           }
       },
       drawingPai: function(){
@@ -142,9 +128,15 @@ export default {
       closeTileSelector: function(){
           this.showTileSelector = false
       },
-      getTileSrc: (pai) => {
-          const srcTemplate = './img/pai-images/'
-          return `${srcTemplate}${pai}.png`
+      getTileSrc: (pai, type) => {
+        if (type =='selector'){
+            var srcTemplate = './img/pai-images/for_selector/'
+            var extension = '.png'
+        }else if (type =='hand'){
+            var srcTemplate = './img/pai-images/for_hand/'
+            var extension = '.jpg'
+        }
+        return `${srcTemplate}${pai}${extension}`
       },
       addPai: function(pai){
           if (this.hand.length === 14){
@@ -161,14 +153,19 @@ export default {
 #hand {
     margin-left: 5%;
     width: 90%;
-    height: 80px;
+    height: 70px;
     border: solid;
     border-width: 1px;
-    border-color: yellowgreen;
+    /* border-color: yellowgreen; */
     border-color: #41b879;
     border-width: 2px;
     border-radius: 8px;
     display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#justDrawing{
+    padding-left: 10px;
 }
 #buttonArea {
     margin-top: 10px;
