@@ -9,11 +9,12 @@
             </div>
         </div>
         <div id="buttonArea">
-            <button class="btn-border" @click="openTileSelector('m')">萬子</button>
-            <button class="btn-border" @click="openTileSelector('s')">索子</button>
-            <button class="btn-border" @click="openTileSelector('p')">筒子</button>
-            <button class="btn-border" @click="openTileSelector('t')">字牌</button>
-            <button class="btn-border" @click="clearHand()">クリア</button>
+            <!-- <button class="btn-border" @click="openTileSelector('m')">萬子</button> -->
+            <floating-button @click="openTileSelector('m')">萬子</floating-button>
+            <floating-button @click="openTileSelector('s')">索子</floating-button>
+            <floating-button @click="openTileSelector('p')">筒子</floating-button>
+            <floating-button @click="openTileSelector('t')">字牌</floating-button>
+            <floating-button @click="clearHand()">クリア</floating-button>
         </div>
         <tile-selector v-if="showTileSelector" @close="closeTileSelector">
             <div v-for="(pai, idx) in tiles[tileType]" :key="idx">
@@ -69,11 +70,13 @@
 
 <script>
 import TileSelector from '../components/TileSelector'
+import FloatingButton from '../components/FloatingButton'
 
 export default {
   name: 'register',
   components: {
-      'tile-selector': TileSelector
+      'tile-selector': TileSelector,
+      'floating-button': FloatingButton
   },
   data(){
       return {
