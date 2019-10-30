@@ -13,6 +13,7 @@
             <button class="btn-border" @click="openTileSelector('s')">索子</button>
             <button class="btn-border" @click="openTileSelector('p')">筒子</button>
             <button class="btn-border" @click="openTileSelector('t')">字牌</button>
+            <button class="btn-border" @click="clearHand()">クリア</button>
         </div>
         <tile-selector v-if="showTileSelector" @close="closeTileSelector">
             <div v-for="(pai, idx) in tiles[tileType]" :key="idx">
@@ -143,6 +144,9 @@ export default {
               return
           }
           this.hand.push(pai)
+      },
+      clearHand: function(){
+          this.hand = []
       }
   }
 }
@@ -150,73 +154,73 @@ export default {
 </script>
 
 <style scoped>
-#hand {
-    margin-left: 5%;
-    width: 90%;
-    height: 70px;
-    border: solid;
-    border-width: 1px;
-    /* border-color: yellowgreen; */
-    border-color: #41b879;
-    border-width: 2px;
-    border-radius: 8px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-#justDrawing{
-    padding-left: 10px;
-}
-#buttonArea {
-    margin-top: 10px;
-}
-.btn-border{
-    display: inline-block;
-    margin: 3px;
-    align-items: center;
-    margin-top: 10px;
-    margin-bottom: 15px;
-}
-#tiles {
-    z-index: 2;
-}
-#tile_selector {
-    z-index: 2;
-    height: 40vh;
-    width: 85vw;
-    margin-left: 5%;
-    margin-right: 10%;
-    background-color: rgba( 20, 20, 20 );
-    border: 4px solid gray;
-    opacity: 0.20;
-    position: fixed;
-    display: block;
-}
-.paiSelector {
-    margin: 10px;
-}
-#situation_box {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-}
-.point_label {
-    width: 0.5rem;
-}
-.point_box {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 3px;
-}
-.point_box input{
-    margin: 5px;
-    width: 40%
-    
-}
-.point_box label{
-    display: block;
-    width: 20%;
-    text-align: center;
-}
+    #hand {
+        margin-left: 5%;
+        width: 90%;
+        height: 70px;
+        border: solid;
+        border-width: 1px;
+        /* border-color: yellowgreen; */
+        border-color: #41b879;
+        border-width: 2px;
+        border-radius: 8px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    #justDrawing{
+        padding-left: 10px;
+    }
+    #buttonArea {
+        margin-top: 10px;
+    }
+    .btn-border{
+        display: inline-block;
+        margin: 3px;
+        align-items: center;
+        margin-top: 10px;
+        margin-bottom: 15px;
+    }
+    #tiles {
+        z-index: 2;
+    }
+    #tile_selector {
+        z-index: 2;
+        height: 40vh;
+        width: 85vw;
+        margin-left: 5%;
+        margin-right: 10%;
+        background-color: rgba( 20, 20, 20 );
+        border: 4px solid gray;
+        opacity: 0.20;
+        position: fixed;
+        display: block;
+    }
+    .paiSelector {
+        margin: 10px;
+    }
+    #situation_box {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+    .point_label {
+        width: 0.5rem;
+    }
+    .point_box {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 3px;
+    }
+    .point_box input{
+        margin: 5px;
+        width: 40%
+        
+    }
+    .point_box label{
+        display: block;
+        width: 20%;
+        text-align: center;
+    }
 </style>
