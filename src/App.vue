@@ -1,8 +1,8 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/">Žè”v‹L˜^</router-link> |
-      <router-link to="/about">‹L˜^‰{——</router-link>
+      <router-link to="/">æ‰‹ç‰Œè¨˜éŒ²</router-link> |
+      <router-link to="/about">è¨˜éŒ²é–²è¦§</router-link>
     </div>
     <router-view/>
   </div>
@@ -29,7 +29,7 @@
   color: #42b983;
 }
 
-/*‹¤’Êstyle*/
+/*ï¿½ï¿½ï¿½ï¿½style*/
 .btn-border {
   display: inline-block;
   max-width: 180px;
