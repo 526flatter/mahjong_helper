@@ -8,8 +8,7 @@
                 <img :src="getTileSrc(drawingPai, 'hand')" v-if="drawingPai" id="justDrawing"/>
             </div>
         </div>
-        <div id="buttonArea">
-            <!-- <button class="btn-border" @click="openTileSelector('m')">萬子</button> -->
+        <div class="horizontal-flex">
             <floating-button @click="openTileSelector('m')">萬子</floating-button>
             <floating-button @click="openTileSelector('s')">索子</floating-button>
             <floating-button @click="openTileSelector('p')">筒子</floating-button>
@@ -21,31 +20,22 @@
                 <img :src="getTileSrc(pai, 'selector')" class="paiSelector" @click="addPai(pai)"/>
             </div>
         </tile-selector>
-        <div id="situation_box">
-            <select v-model="situation.round">
-                <option v-for="round in situation_conditions.round"
-                        v-bind:value="round"
-                        v-bind:key="round">
-                    {{ round }}
-                </option>
-            </select>
-            <label>場</label>
-            <select v-model="situation.hand_number">
-                <option v-for="hand_number in situation_conditions.hand_number"
-                        v-bind:value="hand_number"
-                        v-bind:key="hand_number">
-                    {{ hand_number }}
-                </option>
-            </select>
-            <label>局</label>
-            <select v-model="situation.times">
-                <option v-for="times in situation_conditions.times"
-                        v-bind:value="times"
-                        v-bind:key="times">
-                    {{ times }}
-                </option>
-            </select>
-            <label>本場</label>
+        <div class="horizontal-flex">
+            <selector-whit-unit
+                unit="場"
+                :candidates="situation_conditions.round"
+                v-model="situation.round">
+            </selector-whit-unit>
+            <selector-whit-unit
+                unit="局"
+                :candidates="situation_conditions.hand_number"
+                v-model="situation.hand_number">
+            </selector-whit-unit>
+            <selector-whit-unit
+                unit="本場"
+                :candidates="situation_conditions.times"
+                v-model="situation.times">
+            </selector-whit-unit>
         </div>
         <div class="point_box">
             <label>持ち点</label>
@@ -71,12 +61,14 @@
 <script>
 import TileSelector from '../components/TileSelector'
 import FloatingButton from '../components/FloatingButton'
+import SelectorWithUnit from '../components/SelectorWithUnit'
 
 export default {
   name: 'register',
   components: {
       'tile-selector': TileSelector,
-      'floating-button': FloatingButton
+      'floating-button': FloatingButton,
+      'selector-whit-unit': SelectorWithUnit
   },
   data(){
       return {
@@ -176,28 +168,6 @@ export default {
     }
     #buttonArea {
         margin-top: 10px;
-    }
-    .btn-border{
-        display: inline-block;
-        margin: 3px;
-        align-items: center;
-        margin-top: 10px;
-        margin-bottom: 15px;
-    }
-    #tiles {
-        z-index: 2;
-    }
-    #tile_selector {
-        z-index: 2;
-        height: 40vh;
-        width: 85vw;
-        margin-left: 5%;
-        margin-right: 10%;
-        background-color: rgba( 20, 20, 20 );
-        border: 4px solid gray;
-        opacity: 0.20;
-        position: fixed;
-        display: block;
     }
     .paiSelector {
         margin: 10px;
