@@ -8,7 +8,7 @@
   </div>
 </template>
 
-<style>
+<style lang="scss">
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -29,23 +29,34 @@
   color: #42b983;
 }
 
-/*����style*/
+/* common style */
+$content-margin: 15px;
+$content-padding: 10px;
+$main-color: #9ec34b;
+
+.horizontal-flex {
+  display: flex;
+  justify-content: center;
+  margin-top: $content-margin;
+  margin-bottom: $content-margin;
+  padding: $content-padding;
+  flex-wrap: wrap;
+}
 .btn-border {
   display: inline-block;
   max-width: 180px;
   text-align: left;
-  border: 2px solid #9ec34b;
+  border: 2px solid $main-color;
   font-size: 16px;
-  color: #9ec34b;
+  color: $main-color;
   text-decoration: none;
   font-weight: bold;
   padding: 8px 16px;
   border-radius: 4px;
   transition: .4s;
 }
-
 .btn-border:hover {
-  background-color: #9ec34b;
+  background-color: $main-color;
   border-color: #cbe585;
   color: #FFF;
 }
