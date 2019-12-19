@@ -1,18 +1,18 @@
 <template>
-  <transition name="modal" appear>
-    <div class="modal modal-overlay" @click.self="$emit('close')">
-      <div class="modal-window">
-        <div class="modal-content">
-          <slot/>
-        </div>
-      </div>
-    </div>
-  </transition>
+	<transition name="modal" appear>
+		<div class="modal modal-overlay" @click.self="$emit('close')">
+			<div class="modal-window">
+				<div class="modal-content">
+					<slot/>
+				</div>
+			</div>
+		</div>
+	</transition>
 </template>
 
 <script>
 export default {
-  name: 'TileSelector'
+	name: 'TileSelector'
 }
 </script>
 
@@ -29,7 +29,7 @@ export default {
 			width: 100%;
 			height: 100%;
 			background: rgba(0, 0, 0, 0.5);
-  	}
+		}
 
 		&-window {
 			background: #fff;
