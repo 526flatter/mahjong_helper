@@ -22,3 +22,8 @@ yarn-error.log*
 
 # Dependency directories
 node_modules/
+Include
+Lib
+Scripts
+tcl
+/backend/.project
